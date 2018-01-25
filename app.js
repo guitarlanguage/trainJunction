@@ -19,17 +19,43 @@ $("#add-train-btn-submit").on("click", function(event) {
     event.preventDefault();
     //creating a variable and grabbing the text value for the desired train name
     var $trainName = $("#train-name-input").val().trim();
-    console.log($trainName);
 
     var $destination = $("#destination-input").val().trim();
-    console.log($destination);
 
     var $firstTrainTime = $("#first-train-time-input").val().trim();
-    console.log($firstTrainTime);
 
     var $frequencyInput = $("#frequency-input").val().trim();
-    console.log($frequencyInput);
 
+    // Creates local "temporary" object for holding train data
+    var train = {
+      trainName: $trainName,
+      destination: $destination,
+      firstTrainTime: $firstTrainTime,
+      frequency: $frequencyInput
+    };
+    //push train data to database
+    db.ref().push(train);
+    //log the object data
+    console.log(train.trainName);
+    console.log(train.destination);
+    console.log(train.firstTrainTime);
+    console.log(train.frequency);
 
+    // Alert
+    // alert("New Train successfully added");
+    //clear all of the checkboxes
+    $("#train-name-input").val("");
+    $("#destination-input").val("");
+    $("#first-train-time-input").val("");
+    $("#frequency-input").val("");
+});
+
+// 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
+db.ref().on("child_added", function(childSnapshot, prevChildKey) {
+
+  console.log(childSnapshot.val());
 
 });
+
+
+    //display the inputed values into the Current Train Schedule panel
