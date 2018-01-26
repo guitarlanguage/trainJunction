@@ -23,12 +23,16 @@ $("#add-train-btn-submit").on("click", function(event) {
     var $firstTrainTime = $("#first-train-time-input").val().trim();
     var $frequencyInput = $("#frequency-input").val().trim();
 
+
     // Creates local "temporary" object for holding train data
     var train = {
       trainName: $trainName,
       destination: $destination,
       firstTrainTime: $firstTrainTime,
-      frequency: $frequencyInput
+      frequency: $frequencyInput,
+      //possibly don't need the timestamp
+      // dateAdded: firebase.database.ServerValue.TIMESTAMP;
+
     };
     //push train data to database
     db.ref().push(train);
@@ -37,6 +41,7 @@ $("#add-train-btn-submit").on("click", function(event) {
     console.log(train.destination);
     console.log(train.firstTrainTime);
     console.log(train.frequency);
+    console.log(train.dateAdded);
 
     // Alert
     // alert("New Train successfully added");
@@ -56,19 +61,21 @@ db.ref().on("child_added", function(childSnapshot, prevChildKey) {
   var trainName = childSnapshot.val().trainName;
   var destination = childSnapshot.val().destination;
   var firstTrainTime = childSnapshot.val().firstTrainTime;
-  var frequency = childSnapshot.val().frequencyInput;
+  var frequency = childSnapshot.val().frequency;
 
   // console.log(trainName);
   // console.log(destination);
   // console.log(firstTrainTime);
   // console.log(frequency);
 
-  var militaryTime = moment.unix(firstTrainTime).format("MM:mm:ss");
+  // convert train times
+  var timeConverted = moment(childSnapshot.val().firstTrainTime).format("MM:mm:ss");
+  console.log(timeConverted);
   // console.log(militaryTime);
 
   // Add each train's data into the table
   $("#schedule-table > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" +
-  firstTrainTime + "</td><td>" + frequency + "</td><td>");
+  frequency + "</td><td>" + firstTrainTime + "</td><td>");
 });
 
 
