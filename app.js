@@ -19,11 +19,8 @@ $("#add-train-btn-submit").on("click", function(event) {
     event.preventDefault();
     //creating a variable and grabbing the text value for the desired train name
     var $trainName = $("#train-name-input").val().trim();
-
     var $destination = $("#destination-input").val().trim();
-
     var $firstTrainTime = $("#first-train-time-input").val().trim();
-
     var $frequencyInput = $("#frequency-input").val().trim();
 
     // Creates local "temporary" object for holding train data
@@ -36,10 +33,10 @@ $("#add-train-btn-submit").on("click", function(event) {
     //push train data to database
     db.ref().push(train);
     //log the object data
-    // console.log(train.trainName);
-    // console.log(train.destination);
-    // console.log(train.firstTrainTime);
-    // console.log(train.frequency);
+    console.log(train.trainName);
+    console.log(train.destination);
+    console.log(train.firstTrainTime);
+    console.log(train.frequency);
 
     // Alert
     // alert("New Train successfully added");
@@ -53,13 +50,13 @@ $("#add-train-btn-submit").on("click", function(event) {
 // 3. Create Firebase event for adding a train to the database and a row in the html when a user adds an entry
 db.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
-  // console.log(childSnapshot.val());
+  console.log(childSnapshot.val());
 
   // Store everything into a variable.
-  var trainName = childSnapshot.val().$trainName;
-  var destination = childSnapshot.val().$destination;
-  var firstTrainTime = childSnapshot.val().$firstTrainTime;
-  var frequency = childSnapshot.val().$frequencyInput;
+  var trainName = childSnapshot.val().trainName;
+  var destination = childSnapshot.val().destination;
+  var firstTrainTime = childSnapshot.val().firstTrainTime;
+  var frequency = childSnapshot.val().frequencyInput;
 
   // console.log(trainName);
   // console.log(destination);
