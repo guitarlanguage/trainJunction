@@ -53,6 +53,7 @@ $("#add-train-btn-submit").on("click", function(event) {
 });
 
 // 3. Create Firebase event for adding a train to the database and a row in the html when a user adds an entry
+// var tickToc = db.ref().on("child_added", function(childSnapshot, prevChildKey) {
 db.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
     console.log(childSnapshot.val());
@@ -104,6 +105,9 @@ db.ref().on("child_added", function(childSnapshot, prevChildKey) {
         frequency + "</td><td>" + nextArrivalConverted  + "</td><td>" + trainArrivesIn + "</td>");
 });
 
+// function myFunction() {
+//     tickTocK= setInterval(alertFunc, 3000);
+// }
 
 
 
