@@ -1,0 +1,47 @@
+/* Ocean
+#1fb58f
+
+jacket blue
+#006a9a
+
+sand
+#eab126
+
+cocktail
+#f24C4E
+
+palm
+#1B7B34 */
+
+
+body {
+    background: linear-gradient(to right, #006a9a, #1fb58f);
+    /* background-color: #1fb58f; */
+}
+
+.jumbotron {
+    background-color: #eab126 ;
+    font-family: 'Risque', cursive;
+    color: #006a9a;
+}
+
+.panel-heading {
+    background-color: #f24C4E;
+}
+
+.one {
+    background-color: #f24C4E;
+    color: #006a9a;
+}
+
+.panel-body {
+    background-color: #eab126;
+}
+
+.form-control {
+    background-color: #1fb58f;
+}
+
+button {
+    background-color: #f24C4E;
+}
